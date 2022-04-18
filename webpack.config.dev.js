@@ -16,12 +16,7 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
-    // stats: "minimal",
-    // overlay: true,
     historyApiFallback: true,
-    // disableHostCheck: true,
-    // headers: { "Access-Control-Allow-Origin": "*" },
-    // https: false
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -38,10 +33,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: [
-          "babel-loader",
-          // "eslint-loader"
-        ],
+        use: ["babel-loader"],
       },
       {
         test: /(\.css)$/,
