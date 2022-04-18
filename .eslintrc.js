@@ -30,6 +30,8 @@ module.exports = {
       2,
       { namedComponents: "arrow-function" },
     ],
+    "react/destructuring-assignment": ["off"],
+    "no-console": ["off"],
   },
   root: true,
 }

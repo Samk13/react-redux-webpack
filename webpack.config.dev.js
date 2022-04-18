@@ -23,7 +23,10 @@ module.exports = {
       template: "src/index.html",
       favicon: "src/favicon.ico",
     }),
-    new ESLintPlugin(),
+    new ESLintPlugin({
+      failOnWarning: false, // new
+      failOnError: false, // new
+    }),
   ],
   resolve: {
     extensions: [".js", ".jsx"],

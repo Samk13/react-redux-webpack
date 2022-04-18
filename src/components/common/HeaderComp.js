@@ -15,6 +15,9 @@ const HeaderComp = () => {
       <NavLink to="/about" className="nav-link" activeStyle={activeStyle}>
         About
       </NavLink>
+      <NavLink to="/Courses" className="nav-link" activeStyle={activeStyle}>
+        CoursesPage
+      </NavLink>
     </nav>
   )
 }
