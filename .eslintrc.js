@@ -24,6 +24,7 @@ module.exports = {
     semi: ["error", "never"],
     quotes: ["error", "double"],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "linebreak-style": ["error", "windows"],
   },
   root: true,
 }
