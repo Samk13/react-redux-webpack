@@ -25,6 +25,11 @@ module.exports = {
     quotes: ["error", "double"],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "linebreak-style": ["error", "windows"],
+    "no-unused-vars": ["warn"],
+    "react/function-component-definition": [
+      2,
+      { namedComponents: "arrow-function" },
+    ],
   },
   root: true,
 }
