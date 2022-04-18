@@ -1,5 +1,14 @@
 import React from "react"
 import { render } from "react-dom"
-import HiComponent from "./components/Hi"
+import { BrowserRouter as Router } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./index.css"
+import App from "./components/App"
 
-render(<HiComponent />, document.getElementById("app"))
+const AppEntry = () => (
+  <Router>
+    <App />
+  </Router>
+)
+
+render(<AppEntry />, document.getElementById("app"))
