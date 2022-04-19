@@ -1,6 +1,8 @@
 import React from "react"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
+import * as courseAction from "../../redux/actions/courseActions"
 
-// eslint-disable-next-line react/prefer-stateless-function
 class CoursePage extends React.Component {
   constructor(props) {
     super(props)
@@ -23,6 +25,7 @@ class CoursePage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.props.dispatch(courseAction.createCourse(this.state.course))
     console.log(this.state.course)
   }
 
@@ -47,6 +50,20 @@ class CoursePage extends React.Component {
             />
           </label>
         </div>
+        <div className="mt-16 col-6">
+          {this.props.courses.map((course) => (
+            <div className="card my-2 p-4" key={course.title}>
+              <div className="card-body">
+                <h5 className="card-title">
+                  {`${course.title} / ${course.rating}`}
+                </h5>
+              </div>
+              <p className="card-text">
+                lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+          ))}
+        </div>
         {/* <div className="form-group col-6 mb-2">
           <label htmlFor="rating" className="form-control col">
             Rating
@@ -68,4 +85,19 @@ class CoursePage extends React.Component {
   }
 }
 
-export default CoursePage
+// declare PropTypes
+CoursePage.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  courses: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = (state) => ({
+  courses: state.courses,
+})
+// const mapDispatchToProps = (state) => ({
+//   course: state.course,
+// })
+// export default connect(mapStateToProps, mapDispatchToProps)(CoursePage)
+
+export default connect(mapStateToProps)(CoursePage)
