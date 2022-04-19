@@ -34,6 +34,7 @@ module.exports = {
     "react/prop-types": "warn",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react/forbid-prop-types": "off",
     "react/function-component-definition": [
       2,
       { namedComponents: "arrow-function" },

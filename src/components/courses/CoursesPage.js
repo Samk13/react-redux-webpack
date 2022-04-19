@@ -1,14 +1,15 @@
 import React from "react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
-import * as courseAction from "../../redux/actions/courseActions"
+import { bindActionCreators } from "redux"
+import * as courseActions from "../../redux/actions/courseActions"
 
 class CoursePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
       course: {
+        id: "",
         title: "",
         rating: 1,
       },
@@ -18,14 +19,17 @@ class CoursePage extends React.Component {
   }
 
   handleChange(event) {
-    // eslint-disable-next-line react/no-access-state-in-setstate
-    const course = { ...this.state.course, title: event.target.value }
-    this.setState({ course })
+    const { course } = this.state
+    const newCourse = {
+      ...course,
+      title: event.target.value,
+    }
+    this.setState({ course: newCourse })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.dispatch(courseAction.createCourse(this.state.course))
+    this.props.actions.createCourse(this.state.course)
     console.log(this.state.course)
   }
 
@@ -42,7 +46,7 @@ class CoursePage extends React.Component {
             Course Title
             <input
               type="text"
-              className="form-control"
+              className="form-control my-2"
               id="course"
               placeholder="Enter Course name"
               onChange={this.handleChange}
@@ -87,17 +91,17 @@ class CoursePage extends React.Component {
 
 // declare PropTypes
 CoursePage.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
+  actions: PropTypes.object.isRequired,
   courses: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   courses: state.courses,
 })
-// const mapDispatchToProps = (state) => ({
-//   course: state.course,
-// })
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(courseActions, dispatch),
+})
 // export default connect(mapStateToProps, mapDispatchToProps)(CoursePage)
 
-export default connect(mapStateToProps)(CoursePage)
+export default connect(mapStateToProps, mapDispatchToProps)(CoursePage)
