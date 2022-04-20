@@ -22,6 +22,6 @@ npm run start:api
 
 > npm start: use run-p to run the two scripts in parallel
 
-```
+> when you avoid writing Spaghetti code try not produce Lasagna code!
 
-```
+> while trying so hard to avoid writing spaghetti code, you end up writing Lasagna code where the amount of layers abstractions is kind of stackoverflow.
