@@ -4,61 +4,18 @@ import PropTypes from "prop-types"
 import { bindActionCreators } from "redux"
 import * as courseActions from "../../redux/actions/courseActions"
 
+// eslint-disable-next-line react/prefer-stateless-function
 class CoursePage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      course: {
-        id: "",
-        title: "",
-        rating: 1,
-      },
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleChange(event) {
-    const { course } = this.state
-    const newCourse = {
-      ...course,
-      title: event.target.value,
-    }
-    this.setState({ course: newCourse })
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
-    this.props.actions.createCourse(this.state.course)
-    console.log(this.state.course)
+  componentDidMount() {
+    this.props.actions.loadCourses().catch((error) => {
+      console.log(`Loading courses failed ${error}`)
+    })
   }
 
   render() {
-    const {
-      course: { title },
-    } = this.state
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-          <h2>Courses</h2>
-          <h3>Add course</h3>
-          <div className="form-group col-6 mb-2">
-            <label htmlFor="course" className="form-control col">
-              Course Title
-              <input
-                type="text"
-                className="form-control my-2"
-                id="course"
-                placeholder="Enter Course name"
-                onChange={this.handleChange}
-                value={title.value}
-              />
-            </label>
-          </div>
-          <button type="submit" value="save" className="btn btn-primary col-6">
-            Submit
-          </button>
-        </form>
+        <h3>Courses</h3>
         <div className="mt-16 col-6">
           {this.props.courses.map((course) => (
             <div className="card my-2 p-4" key={course.title}>
