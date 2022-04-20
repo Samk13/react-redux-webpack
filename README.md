@@ -16,8 +16,11 @@ jus add this to your package.json
 ```
 
 to start the mock api server run:
-
 npm run start:api
+
+---
+
+> npm start: use run-p to run the two scripts in parallel
 
 ```
 
