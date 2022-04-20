@@ -1,9 +1,10 @@
-require("webpack")
+const webpack = require("webpack")
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ESLintPlugin = require("eslint-webpack-plugin")
 
 process.env.NODE_ENV = "development"
+const BASE_URL = "http://localhost:3001"
 
 module.exports = {
   mode: "development",
@@ -19,6 +20,9 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env.API_URL": JSON.stringify(BASE_URL),
+    }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
       favicon: "src/favicon.ico",
